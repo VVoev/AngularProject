@@ -35,13 +35,14 @@ export class JobDetailComponent implements OnInit {
   }
 
     public applyJobDetail() {
-      const jobId = this.route.params['_value'].id;
       const userId = this.userService.getUserInfo().userId;
 
       if (userId !== undefined) {
-        this.applicantService.apply(userId, jobId)
-          .subscribe((res) => {
+        this.route.params.subscribe((params) => {
+          this.applicantService.apply(userId, params['_value'].id)
+            .subscribe((res) => {
           });
+        });
       }
     }
 
